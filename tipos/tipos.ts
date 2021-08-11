@@ -96,3 +96,43 @@ usuario = {
     nome: 'Maria'
 }
 console.log(usuario)
+
+// Desafio
+// Alias
+type Funcionario = {
+    supervisores: string[],
+    baterPonto: (horas: number) => string
+}
+
+let funcionario: Funcionario  = {
+    supervisores: ["Ana", "Fernando"],
+    baterPonto(horario: number): string{
+        if (horario <= 8) {
+            return 'Ponto normal'
+        } else {
+            return 'Fora do horário'
+        }
+    }
+}
+// fim desafio
+
+let funcionario2: Funcionario = {
+    supervisores: ["Bia", "Carlos"],
+    baterPonto(horario: number): string{
+        if (horario <= 8) {
+            return 'Ponto normal'
+        } else {
+            return 'Fora do horário'
+        }
+    }
+}
+
+console.log(funcionario.supervisores)
+console.log(funcionario.baterPonto(8))
+console.log(funcionario.baterPonto(9))
+
+// Unios types
+let nota: number | string = 10
+console.log(`minha note é ${nota}`)
+nota = '10'
+console.log(`minha nota  é ${nota}`)
