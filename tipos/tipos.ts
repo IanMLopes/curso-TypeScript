@@ -136,3 +136,90 @@ let nota: number | string = 10
 console.log(`minha note é ${nota}`)
 nota = '10'
 console.log(`minha nota  é ${nota}`)
+
+// checando tipos 
+let valor = '10'
+
+if (typeof valor === "number") {
+    console.log("é um number ")
+} else {
+    console.log("é um", typeof valor )
+}
+
+// Never 
+function falha(msg: string): never {
+    throw  new Error(msg)
+}
+
+const produto = {
+    nome: 'sabão',
+    preco: 4,
+    validarProduto() {
+        if (!this.nome || this.nome.trim().length == 0) {
+            falha('Precisa ter um nome')
+        }
+        if (this.preco < - 0) {
+            falha('Preco invalido!')
+        }
+    }
+}
+produto.validarProduto()
+
+let altura = 12
+
+let alturaOpcional: null | number = 12
+alturaOpcional = null
+
+type Contato = {
+    nome: string,
+    tel1: string,
+    tel2: string | null
+}
+
+const contato1: Contato = {
+    nome: "fulano",
+    tel1: "929293343",
+    tel2: null
+}
+
+console.log(contato1.nome)
+console.log(contato1.tel1)
+console.log(contato1.tel2)
+
+let podeSerNulo = null //any
+podeSerNulo = 12
+console.log(podeSerNulo)
+
+podeSerNulo = "abc"
+console.log(podeSerNulo)
+
+
+// DESAFIO
+
+
+type ContaBancaria = {
+    saldo: number,
+    depositar: (valor: number) => void
+}
+
+let contaBancaria: ContaBancaria = {
+    saldo: 3456,
+    depositar(valor: number) {
+        this.saldo += valor
+    }
+}
+
+type Correntista = {
+    nome: String,
+    contaBancaria: ContaBancaria
+    contatos: string[]
+}
+ 
+let correntista: Correntista = {
+    nome: 'Ana Silva',
+    contaBancaria: contaBancaria,
+    contatos: ['34567890', '98765432']
+}
+ 
+correntista.contaBancaria.depositar(3000)
+console.log(correntista)
