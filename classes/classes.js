@@ -1,4 +1,19 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var Data = /** @class */ (function () {
     function Data(dia, mes, ano) {
         if (dia === void 0) { dia = 1; }
@@ -88,4 +103,79 @@ var carro1 = new Carro('Ford', 'Ka', 185);
 console.log(carro1.acelerar());
 // Array(20).fill(0).forEach(() => carro1.frear())
 console.log(carro1.frear());
+var Ferrari = /** @class */ (function (_super) {
+    __extends(Ferrari, _super);
+    function Ferrari(modelo, velocidadeMaxima) {
+        return _super.call(this, 'Ferrari', modelo, velocidadeMaxima) || this;
+    }
+    Ferrari.prototype.acelerar = function () {
+        return this.alterarVelocidade(20);
+    };
+    Ferrari.prototype.frear = function () {
+        return this.alterarVelocidade(-15);
+    };
+    return Ferrari;
+}(Carro));
+var f40 = new Ferrari('F40', 324);
+console.log(f40.marca + " " + f40.modelo);
+console.log(f40.acelerar());
+console.log(f40.frear());
+// Getters & Setters
+var Pessoa = /** @class */ (function () {
+    function Pessoa() {
+        this._idade = 0;
+    }
+    Object.defineProperty(Pessoa.prototype, "idade", {
+        get: function () {
+            return this._idade;
+        },
+        set: function (valor) {
+            if (valor >= 0 && valor <= 120) {
+                this._idade = valor;
+            }
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Pessoa;
+}());
+var pessoa1 = new Pessoa;
+pessoa1.idade = 10;
+console.log(pessoa1.idade);
+pessoa1.idade = -3;
+console.log(pessoa1.idade);
+// atributos e metodos estatios
+var Matematica = /** @class */ (function () {
+    function Matematica() {
+    }
+    Matematica.areaCirc = function (raio) {
+        return this.PI * raio * raio;
+    };
+    Matematica.PI = 3.1416;
+    return Matematica;
+}());
+console.log(Matematica.areaCirc(4));
+// classe abstrata
+var Calculo = /** @class */ (function () {
+    function Calculo() {
+        this.resultado = 0;
+    }
+    Calculo.prototype.getResultado = function () {
+        return this.resultado;
+    };
+    return Calculo;
+}());
+var Soma = /** @class */ (function (_super) {
+    __extends(Soma, _super);
+    function Soma() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Soma.prototype.executar = function () {
+        var numeros = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            numeros[_i] = arguments[_i];
+        }
+    };
+    return Soma;
+}(Calculo));
 //# sourceMappingURL=classes.js.map
