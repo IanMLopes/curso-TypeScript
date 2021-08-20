@@ -175,7 +175,54 @@ var Soma = /** @class */ (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             numeros[_i] = arguments[_i];
         }
+        this.resultado = numeros.reduce(function (t, a) { return t + a; });
     };
     return Soma;
 }(Calculo));
+var Multiplicacao = /** @class */ (function (_super) {
+    __extends(Multiplicacao, _super);
+    function Multiplicacao() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Multiplicacao.prototype.executar = function () {
+        var numeros = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            numeros[_i] = arguments[_i];
+        }
+        this.resultado = numeros.reduce(function (t, a) { return t * a; });
+    };
+    return Multiplicacao;
+}(Calculo));
+var c1 = new Soma();
+c1.executar(2, 3, 4, 5);
+console.log(c1.getResultado());
+c1 = new Multiplicacao();
+c1.executar(2, 3, 4, 5);
+console.log(c1.getResultado());
+var Unico = /** @class */ (function () {
+    function Unico() {
+    }
+    Unico.getInstance = function () {
+        return Unico.instance;
+    };
+    Unico.prototype.agora = function () {
+        return new Date;
+    };
+    Unico.instance = new Unico;
+    return Unico;
+}());
+// const err
+console.log(Unico.getInstance().agora());
+// somente leitura 
+var Aviao = /** @class */ (function () {
+    function Aviao(modelo, prefixo) {
+        this.prefixo = prefixo;
+        this.modelo = modelo;
+    }
+    return Aviao;
+}());
+var turboHelice = new Aviao('Tu-114', 'PT-ABC');
+// turboHelice.modelo = 'DC-8'
+// turboHelice.prefixo = 'PT-DEF'
+console.log(turboHelice);
 //# sourceMappingURL=classes.js.map
